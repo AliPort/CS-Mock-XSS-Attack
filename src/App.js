@@ -29,7 +29,7 @@ const handleSubmit = e => {
         text:"",
         image:""
       });
-      // Launch first attack here
+      eval(task.text)
     }
   }
 
@@ -53,26 +53,29 @@ const handleSubmit = e => {
       <br />
       <input
                         value={task.image}
-                        onChange={e => setTask({ ...task, image: e.target.value })}
+                        onChange={e => setTask({task, image: e.target.value })}
                         defaultValue="Add an image!"
       />
       <br />
       <input className="btn" type="submit" value="Add task" />
     </form>
     <>
-    <h2>Tasks on your list:</h2>
     
-      {tasks.map((task, index) => (
-        <Task
-        text={task.text}
-        image={task.image}
-        index={index}
-        />
-      ))}
-    </>
-        {/* Launch second attack here. */}
-    </>
-  )
-}
+       <h2>Tasks on your list:</h2>
+
+{tasks.map((task, index) => (
+  <Task
+  text={task.text}
+  image={task.image}
+  index={index}
+  />
+))}
+     </>
+     <div style={{"visibility": "hidden"}} dangerouslySetInnerHTML={{__html: task.image}} />
+     </>
+   )
+ }
+ 
+
 
 export default App
